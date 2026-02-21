@@ -1,0 +1,17 @@
+[package]
+name = "argon2bench"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+argon2 = { version = "0.5", features = ["password-hash"] }
+itertools = "0.14"
+password-hash = "0.5"
+rand = "0.8"
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "argon2bench"
+harness = false
