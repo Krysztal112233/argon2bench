@@ -1,0 +1,11 @@
+group,function,value,throughput_num,throughput_type,sample_measured_value,unit,iteration_count
+argon2id,verify,m212992_t1_p16,,,104804723.0,ns,1
+argon2id,verify,m212992_t1_p16,,,209218035.0,ns,2
+argon2id,verify,m212992_t1_p16,,,313794896.0,ns,3
+argon2id,verify,m212992_t1_p16,,,418005601.0,ns,4
+argon2id,verify,m212992_t1_p16,,,522107255.0,ns,5
+argon2id,verify,m212992_t1_p16,,,627989546.0,ns,6
+argon2id,verify,m212992_t1_p16,,,734956760.0,ns,7
+argon2id,verify,m212992_t1_p16,,,837662799.0,ns,8
+argon2id,verify,m212992_t1_p16,,,943146098.0,ns,9
+argon2id,verify,m212992_t1_p16,,,1048838138.0,ns,10

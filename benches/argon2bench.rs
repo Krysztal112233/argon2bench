@@ -1,4 +1,4 @@
-use argon2::{Argon2, PasswordHasher};
+use argon2::{Argon2, PasswordHasher, PasswordVerifier};
 use criterion::{BenchmarkId, Criterion, black_box, criterion_group, criterion_main};
 use itertools::iproduct;
 use password_hash::SaltString;
@@ -8,7 +8,7 @@ fn bench_argon2_params(c: &mut Criterion) {
     let password = b"password";
     let salt = SaltString::generate(&mut rand::thread_rng());
 
-    let m_values: Vec<u32> = (262144..=1048576).step_by(262144).collect();
+    let m_values: Vec<u32> = (16384..=1048576).step_by(16384).collect();
     let t_values = [1, 2, 3];
     let p_values = [1, 2, 4, 8, 16];
 
@@ -23,6 +23,12 @@ fn bench_argon2_params(c: &mut Criterion) {
         let bench_id = BenchmarkId::new("hash", format!("m{}_t{}_p{}", m, t, p));
         group.bench_with_input(bench_id, &(m, t, p), |b, _| {
             b.iter(|| argon2.hash_password(black_box(password), &salt).unwrap());
+        });
+
+        let hash = argon2.hash_password(black_box(password), &salt).unwrap();
+        let bench_id = BenchmarkId::new("verify", format!("m{}_t{}_p{}", m, t, p));
+        group.bench_with_input(bench_id, &(m, t, p), |b, _| {
+            b.iter(|| argon2.verify_password(black_box(password), &hash).unwrap());
         });
     }
 
